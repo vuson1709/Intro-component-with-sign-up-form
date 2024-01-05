@@ -77,16 +77,21 @@ h1 {
   border-radius: 12px;
 }
 
-.trial-form input {
-  font-family: inherit;
-  color: var(--dark-blue);
-  font-weight: 700;
-  display: block;
+.trial-form label {
   margin-bottom: 20px;
-  padding: 15px 30px;
-  width: 100%;
-  border-radius: 6px;
+  display: block;
   border: 1px solid var(--grayish-blue);
+  border-radius: 6px;
+}
+
+input {
+  border: 1px solid transparent;
+  color: var(--dark-blue);
+  width: 100%;
+  padding: 15px 30px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-weight: 700;
 }
 
 input:focus-visible {
@@ -125,6 +130,11 @@ input:focus-visible {
 .tos {
   color: var(--red);
   font-weight: 700;
+}
+
+/* Error state */
+.trial-form .required {
+  border: 1px solid red;
 }
 
 @media only screen and (max-width: 375px) {
