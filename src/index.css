@@ -1,13 +1,175 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ### Primary */
+  --red: hsl(0, 100%, 74%);
+  --green: hsl(154, 59%, 51%);
+
+  /* ### Accent */
+  --blue: hsl(248, 32%, 49%);
+
+  /* ### Neutral */
+  --dark-blue: hsl(249, 10%, 26%);
+  --grayish-blue: hsl(246, 25%, 77%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+body {
+  background-image: url("./images/bg-intro-desktop.png");
+  background-color: var(--red);
+  /* shift bg's image to right as mockup */
+  background-position: 15px 0;
+  background-repeat: no-repeat;
+
+  /* height = bg's height */
+  height: 800px;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  word-spacing: 2px;
+  margin-bottom: 35px;
+}
+
+.container {
+  display: flex;
+  margin: 0 165px;
+  gap: 15px;
+}
+
+.text-content {
+  flex-basis: 50%;
+  padding-top: 185px;
+}
+
+.trial {
+  flex-grow: 1;
+}
+
+.trial-text {
+  background-color: var(--blue);
+  padding: 20px 0;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 1px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.trial-form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.trial-form input {
+  font-family: inherit;
+  color: var(--dark-blue);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--grayish-blue);
+}
+
+input:focus-visible {
+  outline: 1px solid var(--blue);
+}
+
+.trial-form button {
+  width: 100%;
+  border: unset;
+  background-color: var(--green);
+  padding: 15px 0;
+  border-radius: 6px;
+  text-transform: uppercase;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 1px 0 hsla(154, 59%, 31%, 0.7);
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.trial-form button:hover {
+  background-color: hsla(154, 59%, 51%, 0.8);
+}
+
+.trial-tos {
+  color: var(--grayish-blue);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.tos {
+  color: var(--red);
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 375px) {
+  html {
+    font-size: 80%;
+  }
+  body {
+    background-image: url("./images/bg-intro-mobile.png");
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.4;
+    margin-bottom: 25px;
+  }
+
+  .text-content {
+    padding-top: 200px;
+  }
+
+  .text-content p {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 50px;
+    margin: 0 30px;
+  }
+
+  .trial-text {
+    padding: 20px 60px;
+  }
+
+  .trial-form {
+    padding: 30px;
+  }
+
+  .trial-form input {
+    padding: 15px 20px;
+  }
+
+  .trial-form button {
+    padding: 10px;
+  }
 }
