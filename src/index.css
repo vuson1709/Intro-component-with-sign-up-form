@@ -135,6 +135,34 @@ input:focus-visible {
 /* Error state */
 .trial-form .required {
   border: 1px solid red;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.required::before {
+  /* content: "cannot be empty";
+  position: absolute;
+  color: var(--red);
+  font-style: italic;
+  font-size: 0.75rem;
+  bottom: -25px;
+  right: 0; 
+  */
+}
+
+.icon-error {
+  position: absolute;
+  right: 20px;
+  top: 13px;
+}
+
+.text-error {
+  position: absolute;
+  color: var(--red);
+  font-style: italic;
+  font-size: 0.75rem;
+  bottom: -25px;
+  right: 0;
 }
 
 @media only screen and (max-width: 375px) {

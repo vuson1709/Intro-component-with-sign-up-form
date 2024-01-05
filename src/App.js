@@ -6,11 +6,46 @@
 
 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconError from "./images/icon-error.svg";
 
 export default function App() {
-  const [isInputEmpty, setIsInputEmpty] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [inputs, setInputs] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  // Handle Input'value Change
+  /*
+  - Spread Operator (...inputs): This copies all existing properties from the current inputs state object into a new object.
+- Computed Property Name ([event.target.name]): This dynamically creates a property key based on the name of the input field that was changed (event.target.name).
+- New Value (event.target.value): This assigns the new value entered in the input field (event.target.value) to the corresponding property in the new object.
+  */
+  function handleChange(e) {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  }
+
+  // Handle Form Submit
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // Loop over inputs and check if any input is empty
+    function validateInput() {
+      const newErrors = {};
+
+      Object.entries(inputs).forEach(([inputName, inputValue]) => {
+        if (!inputValue) newErrors[inputName] = `${inputName} cannot be empty`;
+      });
+
+      setErrors(newErrors);
+    }
+    validateInput();
+
+    //
+  }
 
   return (
     <div className="container">
@@ -26,18 +61,75 @@ export default function App() {
         <p className="trial-text">
           <strong>Try it free 7 days</strong> then $20/mo. thereafter
         </p>
-        <form className="trial-form">
-          <label className="required">
-            <input type="text" placeholder="First Name" />
+        <form className="trial-form" onSubmit={handleSubmit}>
+          <label
+            className={errors.firstName ? "required" : ""}
+            htmlFor="firstName"
+          >
+            {errors.firstName && (
+              <>
+                <img src={IconError} alt="Error Icon" className="icon-error" />
+                <span className="text-error">{errors.firstName}</span>
+              </>
+            )}
+            <input
+              type="text"
+              placeholder="First Name"
+              value={inputs.firstName}
+              onChange={handleChange}
+              name="firstName"
+            />
           </label>
-          <label className="required">
-            <input type="text" placeholder="Last Name" />
+          <label
+            className={errors.lastName ? "required" : ""}
+            htmlFor="lastName"
+          >
+            {errors.lastName && (
+              <>
+                <img src={IconError} alt="Error Icon" className="icon-error" />
+                <span className="text-error">{errors.lastName}</span>
+              </>
+            )}
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={inputs.lastName}
+              onChange={handleChange}
+            />
           </label>
-          <label className="required">
-            <input type="text" placeholder="Email Address" />
+          <label className={errors.email ? "required" : ""} htmlFor="email">
+            {errors.email && (
+              <>
+                <img src={IconError} alt="Error Icon" className="icon-error" />
+                <span className="text-error">{errors.email}</span>
+              </>
+            )}
+            <input
+              type="text"
+              name="email"
+              placeholder="Email Address"
+              value={inputs.email}
+              onChange={handleChange}
+            />
           </label>
-          <label className="required">
-            <input type="password" placeholder="Password" />
+          <label
+            className={errors.password ? "required" : ""}
+            htmlFor="password"
+          >
+            {errors.password && (
+              <>
+                <img src={IconError} alt="Error Icon" className="icon-error" />
+                <span className="text-error">{errors.password}</span>
+              </>
+            )}
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={inputs.password}
+              onChange={handleChange}
+            />
           </label>
           <button>Claim your free trial</button>
           <p className="trial-tos">
