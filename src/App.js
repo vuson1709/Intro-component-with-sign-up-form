@@ -9,6 +9,21 @@
 import { useEffect, useState } from "react";
 import IconError from "./images/icon-error.svg";
 
+function separateCamelCase(str) {
+  return (
+    str[0].toUpperCase() + str.slice(1).replace(/([a-z])([A-Z])/g, "$1 $2")
+  );
+}
+
+function checkEmail(email) {
+  // Regular expression for a simple email validation
+  if (!email) return;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Test the email against the regex
+  return emailRegex.test(email);
+}
+
 export default function App() {
   const [errors, setErrors] = useState({});
   const [inputs, setInputs] = useState({
@@ -37,14 +52,23 @@ export default function App() {
       const newErrors = {};
 
       Object.entries(inputs).forEach(([inputName, inputValue]) => {
-        if (!inputValue) newErrors[inputName] = `${inputName} cannot be empty`;
+        if (!inputValue)
+          newErrors[inputName] = `${separateCamelCase(
+            inputName
+          )} cannot be empty`;
       });
 
       setErrors(newErrors);
     }
     validateInput();
 
-    //
+    // Check Email Valid
+    if (!inputs.email) return;
+    if (!checkEmail(inputs.email))
+      setErrors((err) => ({
+        ...err,
+        email: "Looks like this is not an email",
+      }));
   }
 
   return (
